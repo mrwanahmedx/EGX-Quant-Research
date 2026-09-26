@@ -1,2 +1,2 @@
-canonical_security_id,session_date,price_source,source_vintage,source_sha256,price_basis,ohlc_qa_status,quarantine_status,quarantine_reason,point_in_time_membership_status,corporate_action_status,benchmark_status,observed_at,publication_cutoff_ok,evidence_complete
-EGX:EXAMPLE,2026-01-15,REPLACE_SOURCE,REPLACE_VINTAGE,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,raw,passed,clear,,passed,not_applicable,passed,2026-01-15T16:00:00Z,true,true
+canonical_security_id,session_date,source_fingerprint,price_basis,qa_status,point_in_time_membership,corporate_action_status,benchmark_available,observed_at,published_at,quarantine_id,source,source_vintage
+EGX:EXAMPLE,2025-01-02,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,raw,pass,true,not_applicable,true,2025-01-02T15:00:00+02:00,2025-01-02T15:00:00+02:00,,example-only,fixture-v1
