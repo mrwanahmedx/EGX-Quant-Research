@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EGX Index Review Event",
+  "type": "object",
+  "required": [
+    "index_id",
+    "published_date",
+    "effective_date",
+    "source_url",
+    "source_type",
+    "additions",
+    "deletions"
+  ],
+  "properties": {
+    "index_id": {"type": "string", "minLength": 1},
+    "published_date": {"type": "string", "format": "date"},
+    "effective_date": {"type": "string", "format": "date"},
+    "source_url": {"type": "string", "format": "uri"},
+    "source_type": {
+      "enum": ["official", "official_republication", "secondary_reporting"]
+    },
+    "additions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/member"}
+    },
+    "deletions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/member"}
+    },
+    "notes": {"type": "string"}
+  },
+  "$defs": {
+    "member": {
+      "type": "object",
+      "required": ["company_name", "canonical_security_id", "identity_status"],
+      "properties": {
+        "company_name": {"type": "string", "minLength": 1},
+        "canonical_security_id": {"type": ["string", "null"]},
+        "identity_status": {"enum": ["verified", "unresolved"]}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

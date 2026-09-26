@@ -1,0 +1,84 @@
+[
+  {
+    "index_id": "EGX30",
+    "published_date": "2024-01-31",
+    "effective_date": "2024-02-01",
+    "source_url": "https://www.youm7.com/story/2024/1/31/%D8%A7%D8%B3%D8%AA%D8%A8%D8%B9%D8%A7%D8%AF-%D9%83%D8%B1%D9%8A%D8%AF%D9%89-%D8%A7%D8%AC%D8%B1%D9%8A%D9%83%D9%88%D9%84-%D9%88-%D8%B3%D9%8A%D8%B1%D8%A7-%D9%85%D9%86-%D8%A7%D9%84%D9%85%D8%A4%D8%B4%D8%B1-%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%89-%D9%84%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9-%D9%88%D8%A7%D9%86%D8%B6%D9%85%D8%A7%D9%85/6465396",
+    "source_type": "secondary_reporting",
+    "additions": [
+      {"company_name": "Egyptian International Pharmaceuticals - EIPICO", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Ibnsina Pharma", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Delta Sugar", "canonical_security_id": null, "identity_status": "unresolved"}
+    ],
+    "deletions": [
+      {"company_name": "Cairo for Investment and Real Estate Development - CIRA Education", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Credit Agricole Egypt", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "B Investments Holding", "canonical_security_id": null, "identity_status": "unresolved"}
+    ],
+    "notes": "Reported as the February 2024 semi-annual review. Identity mapping remains deliberately unresolved in this evidence file."
+  },
+  {
+    "index_id": "EGX30",
+    "published_date": "2024-07-30",
+    "effective_date": "2024-08-01",
+    "source_url": "https://www.alborsaanews.com/2024/07/30/1813542",
+    "source_type": "secondary_reporting",
+    "additions": [
+      {"company_name": "Emaar Misr", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "B Investments Holding", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Credit Agricole Egypt", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Cleopatra Hospital Company", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Faisal Islamic Bank of Egypt", "canonical_security_id": null, "identity_status": "unresolved"}
+    ],
+    "deletions": [
+      {"company_name": "QALA For Financial Investments", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Ibnsina Pharma", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Orascom Development Egypt", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Delta Sugar", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Egyptian International Pharmaceuticals - EIPICO", "canonical_security_id": null, "identity_status": "unresolved"}
+    ],
+    "notes": "Reported review changes effective at the beginning of August 2024."
+  },
+  {
+    "index_id": "EGX30",
+    "published_date": "2025-01-29",
+    "effective_date": "2025-02-02",
+    "source_url": "https://mondovisione.com/media-and-resources/news/the-egyptian-exchange-egx-announces-the-semi-annual-review-of-its-market-indic-2025130/",
+    "source_type": "official_republication",
+    "additions": [
+      {"company_name": "Egyptian International Pharmaceuticals - EIPICO", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Egypt Aluminum", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Ibnsina Pharma", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Orascom Development Egypt", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Tenth Of Ramadan Pharmaceutical Industries & Diagnostic - Rameda", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "QALA For Financial Investments", "canonical_security_id": null, "identity_status": "unresolved"}
+    ],
+    "deletions": [
+      {"company_name": "Ezz Steel", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "B Investments Holding", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Faisal Islamic Bank of Egypt", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Cleopatra Hospital Company", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "ELSWEDY ELECTRIC", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Heliopolis Housing", "canonical_security_id": null, "identity_status": "unresolved"}
+    ],
+    "notes": "EGX statement republished by MondoVisione; effective Sunday 2 February 2025."
+  },
+  {
+    "index_id": "EGX30",
+    "published_date": "2025-07-29",
+    "effective_date": "2025-08-03",
+    "source_url": "https://mondovisione.com/media-and-resources/news/the-egyptian-exchange-egx-announces-the-semi-annual-review-of-its-market-indic-2025730/",
+    "source_type": "official_republication",
+    "additions": [
+      {"company_name": "Raya Holding For Financial Investments", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Misr Cement (Qena)", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Arabian Cement Company", "canonical_security_id": null, "identity_status": "unresolved"}
+    ],
+    "deletions": [
+      {"company_name": "Alexandria Containers and Goods", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Egyptian International Pharmaceuticals - EIPICO", "canonical_security_id": null, "identity_status": "unresolved"},
+      {"company_name": "Edita Food Industries S.A.E", "canonical_security_id": null, "identity_status": "unresolved"}
+    ],
+    "notes": "EGX statement republished by MondoVisione; effective Sunday 3 August 2025."
+  }
+]
