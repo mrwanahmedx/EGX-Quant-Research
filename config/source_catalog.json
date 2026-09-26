@@ -1,0 +1,92 @@
+[
+  {
+    "source_id": "egx_official_indices",
+    "name": "Egyptian Exchange official index pages",
+    "source_url": "https://beta.egx.com.eg/en/market/indices/overview?index=CASE30",
+    "authority": "official_exchange",
+    "license_status": "official_site_terms_apply",
+    "coverage_claim": "Index methodology and official since-inception pages; current constituent views are available when the site data service responds.",
+    "approved_roles": [
+      "benchmark_reference",
+      "methodology_reference",
+      "corporate_action_reference"
+    ],
+    "prohibited_roles": [
+      "historical_constituent_backfill_without_dated_evidence"
+    ],
+    "point_in_time_membership_proven": false,
+    "notes": "Official benchmark source. Historical constituent membership still requires dated review evidence rather than the current constituent page."
+  },
+  {
+    "source_id": "kaggle_eyad_egx_stock_data",
+    "name": "Eyad Shaban EGX Stock data",
+    "source_url": "https://www.kaggle.com/datasets/eyadshaban/egx-stock-data",
+    "authority": "community_dataset",
+    "license_status": "unknown_verify_before_redistribution",
+    "coverage_claim": "Daily EGX stock-price history described as 2000-2023 where applicable.",
+    "approved_roles": [
+      "raw_price_candidate",
+      "cross_source_overlap_qa"
+    ],
+    "prohibited_roles": [
+      "trusted_price_truth_without_qa",
+      "historical_membership_source"
+    ],
+    "point_in_time_membership_proven": false,
+    "notes": "The dataset card itself warns that errors are likely. It is a raw candidate, not canonical truth."
+  },
+  {
+    "source_id": "kaggle_mahmoud_egx_2021_2026",
+    "name": "Mahmoud Al-Refaey EGX Egyptian Stocks Historical Data",
+    "source_url": "https://www.kaggle.com/datasets/mahmoudalrefaey/egx-egyptian-stocks-2021-2026",
+    "authority": "community_dataset",
+    "license_status": "verify_before_redistribution",
+    "coverage_claim": "Historical price data for EGX-listed companies, dataset title indicates 2021-2026.",
+    "approved_roles": [
+      "raw_price_candidate",
+      "cross_source_overlap_qa"
+    ],
+    "prohibited_roles": [
+      "trusted_price_truth_without_qa",
+      "historical_membership_source"
+    ],
+    "point_in_time_membership_proven": false,
+    "notes": "Use only as an independently versioned raw source until overlap and corporate-action checks pass."
+  },
+  {
+    "source_id": "hf_kjhq_egypt_symbols",
+    "name": "kjhq Egypt Stock Symbols & Company Metadata",
+    "source_url": "https://huggingface.co/datasets/kjhq/Egypt-Stock-Symbols-and-Metadata",
+    "authority": "community_metadata",
+    "license_status": "cc0-1.0",
+    "coverage_claim": "Current-style company name, ticker, market and sector metadata for 251 rows in the observed snapshot.",
+    "approved_roles": [
+      "current_symbol_mapping_candidate",
+      "current_sector_mapping_candidate"
+    ],
+    "prohibited_roles": [
+      "historical_membership_source",
+      "historical_sector_backfill"
+    ],
+    "point_in_time_membership_proven": false,
+    "notes": "Useful for security-master reconciliation. A weekly-updated current snapshot is not historical point-in-time evidence."
+  },
+  {
+    "source_id": "yahoo_market_data",
+    "name": "Yahoo market-data history where available",
+    "source_url": "https://finance.yahoo.com/",
+    "authority": "secondary_market_data",
+    "license_status": "provider_terms_apply",
+    "coverage_claim": "Ticker-dependent historical market data; EGX coverage and freshness vary by security.",
+    "approved_roles": [
+      "secondary_price_candidate",
+      "cross_source_arbitration"
+    ],
+    "prohibited_roles": [
+      "sole_canonical_source_without_qa",
+      "historical_membership_source"
+    ],
+    "point_in_time_membership_proven": false,
+    "notes": "Useful as an independent arbiter for overlapping sessions when coverage exists; not assumed complete."
+  }
+]
