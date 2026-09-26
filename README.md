@@ -55,7 +55,7 @@ The latest real-data work has already shown why the gates matter:
 
 Earlier synthetic protocol runs were useful for testing machinery, but they are not evidence of real EGX alpha. The holdout stays unopened until point-in-time universe, corporate-action, price-quality and provenance controls pass. The repository now contains fail-closed evidence, quarantine and security-master machinery so a row cannot enter real model development without those controls.
 
-See [Current Status](docs/CURRENT_STATUS.md), [Scanner Lineage](docs/SCANNER_LINEAGE.md), the [Foundation-Model Challenger Policy](docs/FOUNDATION_MODEL_POLICY.md), the [Evidence Layer](evidence/README.md), the [Market-Data Quality Pipeline](docs/QUALITY_PIPELINE.md), [Walk-Forward Validation](docs/WALK_FORWARD_VALIDATION.md), [Benchmarks & Shadow Ledger](docs/BENCHMARKS_AND_SHADOW.md), and the [Public Source Inventory](docs/SOURCE_INVENTORY.md).
+See [Current Status](docs/CURRENT_STATUS.md), [Scanner Lineage](docs/SCANNER_LINEAGE.md), the [Foundation-Model Challenger Policy](docs/FOUNDATION_MODEL_POLICY.md), the [Evidence Layer](evidence/README.md), the [Market-Data Quality Pipeline](docs/QUALITY_PIPELINE.md), [Walk-Forward Validation](docs/WALK_FORWARD_VALIDATION.md), [Benchmarks & Shadow Ledger](docs/BENCHMARKS_AND_SHADOW.md), and the [Public Source Inventory](docs/SOURCE_INVENTORY.md), and the [Public-Data & Confidentiality Policy](docs/PUBLIC_DATA_POLICY.md).
 
 ## Architecture
 
@@ -116,6 +116,7 @@ These are **inputs to QA**, not automatically trusted truth.
 ## Research integrity
 
 - No employer data or internal bank information.
+- CI enforces a public-data boundary for risky binary formats, secrets and unreviewed CSV locations.
 - No fabricated market data or performance.
 - Missing evidence produces a blocker, not a synthetic substitute.
 - Current classifications are never projected backward without effective-date evidence.
