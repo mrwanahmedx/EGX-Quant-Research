@@ -18,10 +18,19 @@ def freeze_preholdout_evidence_manifest(
     *,
     decision_time: datetime,
     code_ref: str,
+    source_snapshot_fingerprint: str,
     quarantines: Iterable[QuarantineRange] = (),
 ) -> dict[str, Any]:
     records = tuple(records)
     quarantines = tuple(quarantines)
+    source_snapshot_fingerprint = source_snapshot_fingerprint.lower()
+    if len(source_snapshot_fingerprint) != 64 or any(
+        char not in "0123456789abcdef"
+        for char in source_snapshot_fingerprint
+    ):
+        raise ValueError(
+            "source_snapshot_fingerprint must be a 64-character hex digest"
+        )
     assert_evidence_grain(records)
 
     eligible = [
@@ -43,6 +52,7 @@ def freeze_preholdout_evidence_manifest(
         "eligible_record_count": len(eligible),
         "blocked_record_count": blocked,
         "data_evidence_fingerprint": evidence_fingerprint(records),
+        "source_snapshot_fingerprint": source_snapshot_fingerprint,
         "modeling_authorized": bool(records) and blocked == 0,
     }
     validate_frozen_evidence_manifest(manifest)
