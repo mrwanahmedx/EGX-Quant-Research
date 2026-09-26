@@ -88,5 +88,41 @@
     ],
     "point_in_time_membership_proven": false,
     "notes": "Useful as an independent arbiter for overlapping sessions when coverage exists; not assumed complete."
+  },
+  {
+    "source_id": "cbe_conia",
+    "name": "Central Bank of Egypt CONIA",
+    "source_url": "https://www.cbe.org.eg/en/economic-research/statistics/conia",
+    "authority": "official_central_bank",
+    "license_status": "official_site_terms_apply",
+    "coverage_claim": "Official CONIA O/N rate, compounded term rates and index, with linked historical-data pages.",
+    "approved_roles": [
+      "benchmark_reference",
+      "historical_rate_candidate",
+      "methodology_reference"
+    ],
+    "prohibited_roles": [
+      "historical_equity_membership_source"
+    ],
+    "point_in_time_membership_proven": false,
+    "notes": "Official administrator source for CONIA. Historical series still must be frozen with a reproducible snapshot before model comparison."
+  },
+  {
+    "source_id": "cbe_egp_tbill_auctions",
+    "name": "Central Bank of Egypt EGP T-Bill Auctions",
+    "source_url": "https://www.cbe.org.eg/en/auctions/egp-t-bills?lang=en",
+    "authority": "official_central_bank",
+    "license_status": "official_site_terms_apply",
+    "coverage_claim": "Official EGP Treasury Bill auction announcements/results with tenor, issue/maturity dates and accepted weighted-average yields; historical-data link available.",
+    "approved_roles": [
+      "auction_reference",
+      "fixed_income_benchmark_candidate"
+    ],
+    "prohibited_roles": [
+      "equity_benchmark_source",
+      "historical_membership_source"
+    ],
+    "point_in_time_membership_proven": false,
+    "notes": "Official auction source. A matched-horizon return convention must still be frozen before model comparison."
   }
 ]
