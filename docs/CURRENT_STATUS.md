@@ -4,54 +4,79 @@ Updated: 2026-09-26
 
 ## Executive state
 
-**REAL MODELING BLOCKED BY DATA QA**
+**QA GATE FAIL — MODELING REMAINS BLOCKED**
 
-The research protocol and model-validation harness are ahead of the trustworthy real-data layer. That is intentional: the project is designed to stop rather than manufacture a clean backtest from weak evidence.
+The January 2026 development freeze has been preserved. No February-June 2026 holdout observations were inspected or downloaded during the latest reconciliation work.
 
-## Real-data ingestion findings
+The project is intentionally stopping at the data-evidence gate rather than converting unresolved market-data problems into a backtest.
 
-The latest pre-holdout ingestion work combined:
+## Latest reconciliation state
 
-- the Eyad Kaggle EGX history,
-- the Mahmoud Kaggle EGX 2021-2026 history,
-- a direct Yahoo extension,
-- EGX security metadata used to reconcile identifiers.
+The original ingestion exposed a large impossible-OHLC population across candidate public sources. That population has since been investigated rather than silently rewritten.
 
-Current reconciliation totals:
+Latest audit:
 
 | Check | Current result |
 | --- | ---: |
-| Pre-holdout OHLCV rows ingested | 966,215 |
-| Identifiers reconciled | 289 |
-| Impossible OHLC rows detected | 140,518 |
-| Real holdout opened | No |
-| Real model accepted | No |
+| Material conflict tickers audited | 49 |
+| Corporate-action / adjusted-vs-unadjusted conflicts | 39 |
+| Source corruption / non-comparable OHLC conflicts | 10 |
+| Unresolved audited conflicts | 0 |
+| Confirmed ticker-alias issues in audited set | 0 |
+| Quarantined ticker/date ranges | 47 |
+| Quarantined execution rows, 2021-2023 | 31,860 |
+| Latest liquidity universe | 116 |
+| Universe names unaffected by those quarantines | 96 |
+| Model-approved universe | 0 |
+| Holdout opened | No |
 
-"Impossible OHLC" means observations violating basic bar geometry or equivalent source-consistency rules. They cannot be silently repaired without an auditable rule and source evidence.
+Direct pre-2024 arbitration supported retaining the existing Eyad execution path for EGBE and KZPC. The affected 2021-2023 ranges were quarantined; prices were not invented or rewritten.
 
-## What has already been tested
+## Why model-approved universe is still zero
 
-The project previously built a synthetic research harness to exercise:
+Resolving the audited price conflicts is necessary but not sufficient.
+
+The full modeling gate still requires an evidence-complete, point-in-time research panel with:
+
+1. auditable security identity and symbol history,
+2. point-in-time universe / eligibility,
+3. corporate-action basis,
+4. benchmark provenance,
+5. frozen pre-holdout snapshot,
+6. leakage-safe feature timing,
+7. execution and cost assumptions.
+
+Until those are jointly satisfied, the correct model state is **blocked**, not partially promoted.
+
+## Research machinery already exercised
+
+A synthetic / infrastructure harness has already been used to test:
 
 - Alpha158-style feature generation,
 - 20d / 63d residual-return targets,
-- Linear / Lasso / LightGBM / XGBoost ranker / CatBoost model families,
+- Linear and Lasso baselines,
+- LightGBM, XGBoost ranker and CatBoost challengers,
 - sector and beta neutralisation,
 - Top-K / dropout construction,
 - purged walk-forward logic,
-- model / trial registries,
-- acceptance statistics and leakage checks.
+- trial / model registries,
+- statistical acceptance checks,
+- future-information and revision-leakage controls.
 
-That work is infrastructure validation only. It is **not** a substitute for real EGX validation.
+Those tests validate machinery. They do **not** establish real EGX alpha.
 
-## Immediate blockers
+## Next gate
 
-1. Resolve impossible OHLC observations source by source.
-2. Build a canonical symbol / security master with effective dates.
-3. Obtain or reconstruct point-in-time constituent membership without current-membership leakage.
-4. Apply auditable corporate-action adjustments.
-5. Establish benchmark histories with date and methodology provenance.
-6. Lock the pre-holdout data snapshot.
-7. Only then generate real features and development folds.
+The next deliverable is a machine-readable, frozen pre-holdout evidence manifest that links each model-eligible security/date to:
+
+- canonical security ID,
+- accepted price source and basis,
+- quarantine status,
+- point-in-time eligibility evidence,
+- corporate-action status,
+- benchmark availability,
+- source snapshot fingerprint.
+
+Only after that manifest passes the acceptance checks should the development panel be generated.
 
 The February-June 2026 holdout remains untouched by design.
