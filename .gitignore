@@ -20,3 +20,16 @@ runs/
 *.feather
 *.pkl
 .DS_Store
+*.xlsx
+*.xls
+*.xlsm
+*.pbix
+*.sqlite3
+*.pickle
+*.zip
+*.7z
+*.rar
+*.p12
+*.pfx
+*.pem
+*.key
