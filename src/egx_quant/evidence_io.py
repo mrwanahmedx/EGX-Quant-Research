@@ -82,3 +82,32 @@ def load_evidence_csv(path: str | Path) -> tuple[DataEvidenceRecord, ...]:
 def fingerprint_evidence_csv(path: str | Path) -> str:
     """Return the canonical evidence fingerprint for a CSV export."""
     return evidence_fingerprint(load_evidence_csv(path))
+
+
+def evidence_records_to_jsonable(
+    records: tuple[DataEvidenceRecord, ...],
+) -> list[dict[str, object]]:
+    output: list[dict[str, object]] = []
+    for record in records:
+        output.append(
+            {
+                "canonical_security_id": record.canonical_security_id,
+                "session_date": record.session_date.isoformat(),
+                "source_fingerprint": record.source_fingerprint,
+                "price_basis": record.price_basis,
+                "qa_status": record.qa_status,
+                "point_in_time_membership": record.point_in_time_membership,
+                "corporate_action_status": record.corporate_action_status,
+                "benchmark_available": record.benchmark_available,
+                "observed_at": record.observed_at.isoformat(),
+                "published_at": (
+                    record.published_at.isoformat()
+                    if record.published_at is not None
+                    else None
+                ),
+                "quarantine_id": record.quarantine_id,
+                "source": record.source,
+                "source_vintage": record.source_vintage,
+            }
+        )
+    return output
