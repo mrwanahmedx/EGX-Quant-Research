@@ -12,5 +12,15 @@ license = {text = "MIT"}
 authors = [{name = "Marwan Ahmed"}]
 dependencies = []
 
+[project.optional-dependencies]
+modeling = [
+  "numpy>=1.26",
+  "pandas>=2.1",
+  "scikit-learn>=1.4",
+  "lightgbm>=4.3",
+  "xgboost>=2.0",
+  "catboost>=1.2"
+]
+
 [tool.setuptools.packages.find]
 where = ["src"]
