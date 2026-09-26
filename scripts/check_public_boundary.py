@@ -15,10 +15,10 @@ FORBIDDEN_BASENAMES = {
 }
 
 PRIVATE_KEY_MARKERS = (
-    "-----BEGIN PRIVATE KEY-----",
-    "-----BEGIN RSA PRIVATE KEY-----",
-    "-----BEGIN OPENSSH PRIVATE KEY-----",
-    "-----BEGIN EC PRIVATE KEY-----",
+    "-----BEGIN " + "PRIVATE KEY-----",
+    "-----BEGIN RSA " + "PRIVATE KEY-----",
+    "-----BEGIN OPENSSH " + "PRIVATE KEY-----",
+    "-----BEGIN EC " + "PRIVATE KEY-----",
 )
 
 APPROVED_CSV_PREFIXES = (
