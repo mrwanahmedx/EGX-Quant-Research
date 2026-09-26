@@ -53,7 +53,7 @@ class BenchmarkApprovalTests(unittest.TestCase):
     def test_catalog_source_links_are_valid(self):
         validate_benchmark_source_links(
             load_benchmark_catalog(),
-            load_source_catalog(),
+            load_source_catalog("config/source_catalog.json"),
         )
 
     def test_review_must_be_complete(self):
