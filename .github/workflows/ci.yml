@@ -61,3 +61,21 @@ jobs:
               raise SystemExit("Research data files must not be committed: " + ", ".join(tracked_like))
           print("no raw/interim/processed data committed")
           PY
+
+      - name: Assert current real-research gate fails closed
+        shell: bash
+        run: |
+          set +e
+          python scripts/research_readiness.py --json > /tmp/research-readiness.json
+          code=$?
+          set -e
+          cat /tmp/research-readiness.json
+          if [ "$code" -ne 2 ]; then
+            echo "Expected the current repository to remain blocked until real evidence is imported; got exit $code"
+            exit 1
+          fi
+
+      - name: Exercise readiness snapshot writer
+        run: |
+          python scripts/write_readiness_snapshot.py             --output /tmp/readiness-snapshot.json             --generated-at 2026-09-26T00:00:00Z
+          python -m json.tool /tmp/readiness-snapshot.json > /dev/null
