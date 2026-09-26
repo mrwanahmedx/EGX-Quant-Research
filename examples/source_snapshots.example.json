@@ -1,0 +1,13 @@
+[
+  {
+    "source_id": "kaggle_eyad_egx_stock_data",
+    "source_version": "REPLACE_WITH_LOCAL_SNAPSHOT_VERSION",
+    "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "row_count": 1,
+    "min_session": "2025-01-02",
+    "max_session": "2026-01-30",
+    "license_status": "unknown_verify_before_redistribution",
+    "local_only": true,
+    "notes": "Example only. Replace every placeholder with metadata from the exact local pre-holdout extract."
+  }
+]
