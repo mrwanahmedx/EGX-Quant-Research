@@ -113,6 +113,10 @@ Candidate sources being reconciled include public EGX Kaggle histories, Yahoo ex
 
 These are **inputs to QA**, not automatically trusted truth.
 
+## Public-data boundary
+
+See [Public Data & Confidentiality Boundary](docs/CONFIDENTIALITY.md). Employer/customer data, internal schemas, proprietary logic and private model outputs are not permitted in this repository.
+
 ## Research integrity
 
 - No employer data or internal bank information.
