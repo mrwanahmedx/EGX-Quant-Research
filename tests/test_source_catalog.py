@@ -43,6 +43,20 @@ class SourceCatalogTests(unittest.TestCase):
         )
         self.assertEqual(source.authority, "official_exchange")
 
+    def test_cbe_sources_are_registered_for_cash_and_tbill_research(self):
+        conia = require_role(
+            self.sources,
+            "cbe_conia",
+            "historical_rate_candidate",
+        )
+        tbill = require_role(
+            self.sources,
+            "cbe_egp_tbill_auctions",
+            "fixed_income_benchmark_candidate",
+        )
+        self.assertEqual(conia.authority, "official_central_bank")
+        self.assertEqual(tbill.authority, "official_central_bank")
+
 
 if __name__ == "__main__":
     unittest.main()

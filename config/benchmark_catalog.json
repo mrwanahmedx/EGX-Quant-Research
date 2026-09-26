@@ -36,22 +36,22 @@
     "benchmark_id": "conia",
     "name": "CONIA",
     "kind": "overnight_cash_rate",
-    "source_id": "official_rate_source_required",
-    "methodology_evidenced": false,
+    "source_id": "cbe_conia",
+    "methodology_evidenced": true,
     "historical_series_frozen": false,
     "series_fingerprint": null,
     "approved_for_model_comparison": false,
-    "notes": "Cash-rate comparator remains blocked until official historical observations and conventions are frozen."
+    "notes": "Official CBE CONIA methodology/source is identified; historical observations still must be frozen and fingerprinted before approval."
   },
   {
     "benchmark_id": "egypt_tbill",
     "name": "Egyptian Treasury Bill",
     "kind": "fixed_income",
-    "source_id": "official_fixed_income_source_required",
+    "source_id": "cbe_egp_tbill_auctions",
     "methodology_evidenced": false,
     "historical_series_frozen": false,
     "series_fingerprint": null,
     "approved_for_model_comparison": false,
-    "notes": "Matched-horizon fixed-income hurdle requires dated auction/yield data and an explicit return convention."
+    "notes": "Official CBE auction source is identified; a dated historical series and matched-horizon return convention still must be frozen before approval."
   }
 ]
