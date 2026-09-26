@@ -35,7 +35,7 @@ The latest real-data work has already shown why the gates matter:
 
 Earlier synthetic protocol runs were useful for testing machinery, but they are not evidence of real EGX alpha. The holdout stays unopened until point-in-time universe, corporate-action, price-quality and provenance controls pass.
 
-See [Current Status](docs/CURRENT_STATUS.md).
+See [Current Status](docs/CURRENT_STATUS.md), [Scanner Lineage](docs/SCANNER_LINEAGE.md) and the [Foundation-Model Challenger Policy](docs/FOUNDATION_MODEL_POLICY.md).
 
 ## Architecture
 
