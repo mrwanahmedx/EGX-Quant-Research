@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen Development Acceptance Thresholds",
+  "type": "object",
+  "required": [
+    "status",
+    "frozen_at",
+    "code_ref",
+    "development_evidence_ref",
+    "holdout_unopened",
+    "thresholds",
+    "multiple_testing_method",
+    "trial_registry_required",
+    "rationale"
+  ],
+  "properties": {
+    "status": {"const": "frozen"},
+    "frozen_at": {"type": "string", "format": "date-time"},
+    "code_ref": {"type": "string", "minLength": 1},
+    "development_evidence_ref": {"type": "string", "minLength": 1},
+    "holdout_unopened": {"const": true},
+    "thresholds": {
+      "type": "object",
+      "required": [
+        "min_mean_rank_ic",
+        "min_positive_ic_fraction",
+        "max_one_way_turnover",
+        "min_net_return",
+        "max_drawdown_abs"
+      ],
+      "properties": {
+        "min_mean_rank_ic": {"type": "number", "minimum": -1, "maximum": 1},
+        "min_positive_ic_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "max_one_way_turnover": {"type": "number", "minimum": 0, "maximum": 1},
+        "min_net_return": {"type": "number"},
+        "max_drawdown_abs": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": false
+    },
+    "multiple_testing_method": {"type": "string", "minLength": 1},
+    "trial_registry_required": {"type": "boolean"},
+    "rationale": {"type": "string", "minLength": 20},
+    "note": {"type": "string"}
+  },
+  "additionalProperties": false
+}
