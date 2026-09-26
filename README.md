@@ -35,7 +35,7 @@ The latest real-data work has already shown why the gates matter:
 
 Earlier synthetic protocol runs were useful for testing machinery, but they are not evidence of real EGX alpha. The holdout stays unopened until point-in-time universe, corporate-action, price-quality and provenance controls pass. The repository now contains fail-closed evidence, quarantine and security-master machinery so a row cannot enter real model development without those controls.
 
-See [Current Status](docs/CURRENT_STATUS.md), [Scanner Lineage](docs/SCANNER_LINEAGE.md), the [Foundation-Model Challenger Policy](docs/FOUNDATION_MODEL_POLICY.md), and the [Evidence Layer](evidence/README.md).
+See [Current Status](docs/CURRENT_STATUS.md), [Scanner Lineage](docs/SCANNER_LINEAGE.md), the [Foundation-Model Challenger Policy](docs/FOUNDATION_MODEL_POLICY.md), the [Evidence Layer](evidence/README.md), and the [Public Source Inventory](docs/SOURCE_INVENTORY.md).
 
 ## Architecture
 
