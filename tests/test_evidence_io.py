@@ -2,7 +2,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from egx_quant.evidence_io import fingerprint_evidence_csv, load_evidence_csv
+from egx_quant.evidence_io import (
+    evidence_records_to_jsonable,
+    fingerprint_evidence_csv,
+    load_evidence_csv,
+)
 
 
 HEADER = (
@@ -32,6 +36,9 @@ class EvidenceIOTests(unittest.TestCase):
         self.assertEqual(records[0].qa_status, "pass")
         self.assertTrue(records[0].point_in_time_membership)
         self.assertEqual(len(fingerprint), 64)
+        payload = evidence_records_to_jsonable(records)
+        self.assertEqual(payload[0]["canonical_security_id"], "EGX:TEST")
+        self.assertEqual(payload[0]["session_date"], "2026-01-15")
 
     def test_csv_missing_required_columns_fails(self):
         with tempfile.TemporaryDirectory() as folder:
