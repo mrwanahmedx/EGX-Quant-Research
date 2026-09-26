@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen Pre-Holdout Evidence Manifest",
+  "type": "object",
+  "required": [
+    "kind",
+    "decision_time",
+    "code_ref",
+    "record_count",
+    "eligible_record_count",
+    "blocked_record_count",
+    "data_evidence_fingerprint",
+    "modeling_authorized"
+  ],
+  "properties": {
+    "kind": {"const": "preholdout-data-evidence-manifest"},
+    "decision_time": {"type": "string", "format": "date-time"},
+    "code_ref": {"type": "string", "minLength": 1},
+    "record_count": {"type": "integer", "minimum": 0},
+    "eligible_record_count": {"type": "integer", "minimum": 0},
+    "blocked_record_count": {"type": "integer", "minimum": 0},
+    "data_evidence_fingerprint": {"type": "string", "minLength": 16},
+    "modeling_authorized": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}

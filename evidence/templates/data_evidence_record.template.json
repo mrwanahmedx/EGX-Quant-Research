@@ -1,0 +1,17 @@
+[
+  {
+    "canonical_security_id": "EGX:EXAMPLE",
+    "session_date": "2025-01-02",
+    "source_fingerprint": "REPLACE_WITH_REAL_SOURCE_SHA256",
+    "price_basis": "raw",
+    "qa_status": "quarantine",
+    "point_in_time_membership": false,
+    "corporate_action_status": "unresolved",
+    "benchmark_available": false,
+    "observed_at": "2025-01-02T16:00:00+02:00",
+    "published_at": null,
+    "quarantine_id": "EXAMPLE_DO_NOT_USE",
+    "source": "replace-with-source-id",
+    "source_vintage": "replace-with-source-vintage"
+  }
+]
