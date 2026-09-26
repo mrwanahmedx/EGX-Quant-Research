@@ -50,7 +50,12 @@ def freeze_preholdout_evidence_manifest(
 
 
 def require_frozen_manifest_authorized(manifest: Mapping[str, Any]) -> None:
-    validate_frozen_evidence_manifest(manifest)
+    try:
+        validate_frozen_evidence_manifest(manifest)
+    except (TypeError, ValueError, KeyError) as exc:
+        raise RuntimeError(
+            "frozen data-evidence manifest is invalid and cannot authorize modeling"
+        ) from exc
     if not manifest.get("modeling_authorized", False):
         raise RuntimeError(
             "real modeling is not authorized by the frozen data-evidence manifest"
