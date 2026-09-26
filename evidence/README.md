@@ -23,7 +23,24 @@ Expected source artifacts from that reconciliation include:
 2. Produce exact quarantine rows matching `schemas/quarantine_range.schema.json`.
 3. Produce one evidence row per intended security/date grain matching `schemas/data_evidence_record.schema.json`.
 4. Validate point-in-time security identity against `schemas/security_master_record.schema.json`.
-5. Freeze a pre-holdout evidence manifest.
-6. Permit model development only when every row is authorized.
+5. Freeze the exact pre-holdout source snapshot metadata and composite fingerprint.
+6. Freeze a row-level evidence manifest explicitly linked to that source snapshot fingerprint.
+7. Freeze a development panel linked to the authorized evidence generation.
+8. Permit model development only when every lineage link and evidence gate passes.
 
 No exact ticker/date range should be recreated from a narrative summary.
+
+
+## Lineage chain
+
+The model-development lineage is deliberately cryptographic:
+
+```text
+local public source extract
+  -> source snapshot SHA-256 + composite fingerprint
+  -> row-level evidence manifest + source_snapshot_fingerprint
+  -> development panel manifest + evidence fingerprint/code ref
+  -> experiment manifest
+```
+
+A row-level evidence manifest from a different source generation must not authorize the current development panel.
