@@ -1,0 +1,18 @@
+{
+  "experiment_id": "dev-example-001",
+  "created_at": "2026-09-26T00:00:00Z",
+  "code_ref": "COMMIT_SHA",
+  "data_fingerprint": "REPLACE_WITH_64_CHAR_SHA256",
+  "feature_set": "alpha158-egx-v1",
+  "target": "residual_return_20d",
+  "split": "development-fold-01",
+  "model": "linear",
+  "params": {},
+  "seed": 20260926,
+  "cost_model": {
+    "commission_bps": 0,
+    "slippage_bps": 0,
+    "taxes_fees_bps": 0,
+    "status": "PLACEHOLDER_NOT_FOR_RESULTS"
+  },
+  "notes": "Example schema only. Replace all placeholders before recording an experiment."
