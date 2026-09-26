@@ -190,13 +190,18 @@ def liquidity_score(bars: list[Bar]) -> float:
 
 
 def data_quality_score(s: Security, bars: list[Bar], catalysts: list[Catalyst], as_of: date) -> float:
-    score = 10.0
+    score = 5.0
     if s.data_as_of is not None:
         age = max(0, (as_of - s.data_as_of).days)
-        score += 30 if age <= 7 else 20 if age <= 30 else 8 if age <= 90 else 0
-    # Price history is essential for active signals.
-    if len(bars) >= 60: score += 35
-    elif len(bars) >= 20: score += 20
+        score += 25 if age <= 7 else 18 if age <= 30 else 7 if age <= 90 else 0
+
+    # Price history must be both deep enough and recent. A year of stale bars is not live data.
+    if bars:
+        price_age = max(0, (as_of - bars[-1].date).days)
+        freshness = 25 if price_age <= 5 else 16 if price_age <= 10 else 6 if price_age <= 30 else 0
+        depth = 15 if len(bars) >= 60 else 9 if len(bars) >= 20 else 2
+        score += freshness + depth
+
     # Basic fundamental coverage.
     populated = sum(v is not None for v in (s.pe, s.pb, s.roe, s.earnings_growth, s.revenue_growth))
     score += populated * 4

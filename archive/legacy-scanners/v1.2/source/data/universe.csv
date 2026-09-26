@@ -1,0 +1,13 @@
+ticker,name,sector,price,pe,pb,roe,earnings_growth,revenue_growth,dividend_yield,debt_to_equity,npl_ratio,capital_adequacy,presales_growth,backlog_growth,export_share,margin_growth,asset_type,data_as_of
+QNBE,QNB Alahli,Banks,58.50,4.5,1.2,31,23,18,2.4,0.8,4.1,22,,,,,STOCK,2026-08-26
+ADIB,Abu Dhabi Islamic Bank Egypt,Banks,53.89,5.6,1.7,38,21,25,2.0,0.7,3.2,19,,,,,STOCK,2026-08-26
+CIEB,Credit Agricole Egypt,Banks,24.99,5.0,1.1,27,8,11,13,0.6,2.8,20,,,,,STOCK,2026-08-26
+MASR,Madinet Masr,Real Estate,7.56,5.6,1.1,22,-20,7,3,0.8,,,45,38,,,STOCK,2026-08-26
+TMGH,Talaat Moustafa Group,Real Estate,98.00,10.9,2.0,25,23,24,1.1,0.9,,,27,30,,,STOCK,2026-08-26
+ABUK,Abu Qir Fertilizers,Industrials,76.37,11.7,3.2,29,18,22,10.8,0.2,,,,,44,8,STOCK,2026-08-26
+FWRY,Fawry,Technology,18.90,18.7,5.0,28,29,39,0.5,0.3,,,,,,,STOCK,2026-08-26
+ETEL,Telecom Egypt,Industrials,47.00,6.8,1.5,24,16,20,4.5,1.0,,,,,6,4,STOCK,2026-08-26
+SWDY,Elsewedy Electric,Industrials,76.00,8.5,2.4,30,25,28,2.0,0.8,,,,,55,6,STOCK,2026-08-26
+CTQ,CI The Quant,Funds,11.93,,,,17,,0,,,,,,,,FUND,2026-08-26
+BIN,Beltone Industrial Fund,Funds,1.49,,,,20,,0,,,,,,,,FUND,2026-08-26
+B35,EGX35-LV ETF,Funds,1.49,,,,42,,0,,,,,,,,FUND,2026-08-26

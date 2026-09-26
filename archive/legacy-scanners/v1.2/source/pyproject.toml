@@ -1,0 +1,11 @@
+[project]
+name = "egx-portfolio-scanner"
+version = "0.1.2"
+description = "Portfolio-aware EGX scanner"
+requires-python = ">=3.10"
+
+[project.scripts]
+egx-scan = "egx_scanner.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
