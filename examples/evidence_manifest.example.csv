@@ -1,0 +1,2 @@
+canonical_security_id,session_date,price_source,source_vintage,source_sha256,price_basis,ohlc_qa_status,quarantine_status,quarantine_reason,point_in_time_membership_status,corporate_action_status,benchmark_status,observed_at,publication_cutoff_ok,evidence_complete
+EGX:EXAMPLE,2026-01-15,REPLACE_SOURCE,REPLACE_VINTAGE,aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,raw,passed,clear,,passed,not_applicable,passed,2026-01-15T16:00:00Z,true,true
