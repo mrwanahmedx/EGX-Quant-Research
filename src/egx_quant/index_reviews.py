@@ -36,6 +36,20 @@ class IndexReviewEvent:
             raise ValueError("unsupported index-review source type")
 
 
+@dataclass(frozen=True)
+class MembershipDelta:
+    index_id: str
+    effective_date: date
+    canonical_security_id: str
+    action: str
+    source_url: str
+    published_date: date
+
+    def __post_init__(self) -> None:
+        if self.action not in {"add", "delete"}:
+            raise ValueError("action must be add or delete")
+
+
 def load_index_review_events(
     path: str | Path,
 ) -> tuple[IndexReviewEvent, ...]:
@@ -89,6 +103,16 @@ def canonical_identity_complete(event: IndexReviewEvent) -> bool:
     )
 
 
+def unresolved_identity_count(events: Iterable[IndexReviewEvent]) -> int:
+    return sum(
+        1
+        for event in events
+        for member in event.additions + event.deletions
+        if member.identity_status != "verified"
+        or not member.canonical_security_id
+    )
+
+
 def apply_review_event(
     membership: set[str],
     event: IndexReviewEvent,
@@ -109,3 +133,88 @@ def apply_review_event(
     for member in event.additions:
         output.add(member.canonical_security_id)  # type: ignore[arg-type]
     return output
+
+
+def materialize_membership_deltas(
+    events: Iterable[IndexReviewEvent],
+    *,
+    decision_date: date,
+    strict: bool = True,
+) -> tuple[MembershipDelta, ...]:
+    """Materialize only review changes known by decision_date.
+
+    Date-only publication evidence is treated conservatively: an event is only
+    visible when published_date <= decision_date. In strict mode, any unresolved
+    company identity in a visible review blocks materialisation.
+    """
+    output: list[MembershipDelta] = []
+
+    for event in sorted(events, key=lambda e: (e.index_id, e.effective_date)):
+        if event.published_date > decision_date:
+            continue
+
+        changes = [
+            ("add", member) for member in event.additions
+        ] + [
+            ("delete", member) for member in event.deletions
+        ]
+
+        for action, member in changes:
+            if (
+                member.identity_status != "verified"
+                or not member.canonical_security_id
+            ):
+                if strict:
+                    raise RuntimeError(
+                        "index membership reconstruction blocked by unresolved "
+                        f"identity: {event.index_id} / {member.company_name} / "
+                        f"{event.effective_date.isoformat()}"
+                    )
+                continue
+
+            output.append(
+                MembershipDelta(
+                    index_id=event.index_id,
+                    effective_date=event.effective_date,
+                    canonical_security_id=member.canonical_security_id,
+                    action=action,
+                    source_url=event.source_url,
+                    published_date=event.published_date,
+                )
+            )
+
+    return tuple(
+        sorted(
+            output,
+            key=lambda x: (
+                x.index_id,
+                x.effective_date,
+                x.canonical_security_id,
+                x.action,
+            ),
+        )
+    )
+
+
+def reconstruct_membership(
+    *,
+    seed_members: Iterable[str],
+    deltas: Iterable[MembershipDelta],
+    index_id: str,
+    as_of: date,
+) -> frozenset[str]:
+    """Apply effective deltas to an explicit dated seed constituent set."""
+    members = set(seed_members)
+    for delta in sorted(
+        (
+            d
+            for d in deltas
+            if d.index_id == index_id and d.effective_date <= as_of
+        ),
+        key=lambda x: (x.effective_date, x.canonical_security_id, x.action),
+    ):
+        if delta.action == "add":
+            members.add(delta.canonical_security_id)
+        else:
+            members.discard(delta.canonical_security_id)
+    return frozenset(members)
