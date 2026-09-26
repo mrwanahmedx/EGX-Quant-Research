@@ -12,6 +12,7 @@ def validate_frozen_evidence_manifest(manifest: Mapping[str, Any]) -> None:
         "eligible_record_count",
         "blocked_record_count",
         "data_evidence_fingerprint",
+        "source_snapshot_fingerprint",
         "modeling_authorized",
     }
     missing = required - set(manifest)
@@ -31,6 +32,12 @@ def validate_frozen_evidence_manifest(manifest: Mapping[str, Any]) -> None:
     fingerprint = str(manifest["data_evidence_fingerprint"])
     if len(fingerprint) < 16:
         raise ValueError("data evidence fingerprint is too short")
+
+    source_fingerprint = str(manifest["source_snapshot_fingerprint"]).lower()
+    if len(source_fingerprint) != 64 or any(
+        char not in "0123456789abcdef" for char in source_fingerprint
+    ):
+        raise ValueError("source snapshot fingerprint must be a 64-character hex digest")
 
     expected_authorized = total > 0 and blocked == 0
     if bool(manifest["modeling_authorized"]) != expected_authorized:
