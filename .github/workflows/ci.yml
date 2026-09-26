@@ -78,6 +78,25 @@ jobs:
             exit 1
           fi
 
+      - name: Assert guarded baseline runner remains blocked
+        shell: bash
+        run: |
+          cat > /tmp/baseline-observations.json <<'JSON'
+          [
+            {"session_date":"2025-01-02","canonical_security_id":"EGX:A","score":1.0,"target_return":0.01},
+            {"session_date":"2025-01-02","canonical_security_id":"EGX:B","score":0.0,"target_return":0.00}
+          ]
+          JSON
+          set +e
+          python scripts/run_baseline_research.py             --observations /tmp/baseline-observations.json             --top-k 1 > /tmp/baseline-status.txt
+          code=$?
+          set -e
+          cat /tmp/baseline-status.txt
+          if [ "$code" -ne 2 ]; then
+            echo "Expected real baseline runner to stay blocked until readiness passes; got exit $code"
+            exit 1
+          fi
+
       - name: Assert current real-research gate fails closed
         shell: bash
         run: |
