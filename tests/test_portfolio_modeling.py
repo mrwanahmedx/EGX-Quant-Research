@@ -1,7 +1,7 @@
 import unittest
 
 from egx_quant.gates import DataEvidence
-from egx_quant.modeling import ModelSpec, authorize_training
+from egx_quant.modeling import ModelSpec, authorize_real_training, authorize_training
 from egx_quant.portfolio import RankedSecurity, dropout_rebalance, one_way_turnover, top_k
 
 
@@ -36,6 +36,31 @@ class PortfolioModelingTests(unittest.TestCase):
         blocked = DataEvidence(True, True, False, False, True, False)
         with self.assertRaises(RuntimeError):
             authorize_training(spec, blocked)
+
+    def test_real_training_requires_frozen_row_level_manifest(self):
+        spec = ModelSpec(
+            family="linear",
+            target="residual_return_20d",
+            feature_set="alpha158-egx-v1",
+            params={},
+        )
+        aggregate_pass = DataEvidence(True, True, True, True, True, True)
+        blocked_manifest = {
+            "modeling_authorized": False,
+            "record_count": 100,
+            "eligible_record_count": 96,
+            "blocked_record_count": 4,
+        }
+        with self.assertRaises(RuntimeError):
+            authorize_real_training(spec, aggregate_pass, blocked_manifest)
+
+        allowed_manifest = {
+            "modeling_authorized": True,
+            "record_count": 100,
+            "eligible_record_count": 100,
+            "blocked_record_count": 0,
+        }
+        authorize_real_training(spec, aggregate_pass, allowed_manifest)
 
 
 if __name__ == "__main__":
