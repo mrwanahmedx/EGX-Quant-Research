@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Benchmark Approval Review",
+  "type": "object",
+  "required": [
+    "kind",
+    "benchmark_id",
+    "source_id",
+    "series_fingerprint",
+    "frozen_manifest_ref",
+    "reviewed_at",
+    "reviewer",
+    "methodology_reviewed",
+    "source_snapshot_reviewed",
+    "return_convention_reviewed",
+    "approved_for_model_comparison"
+  ],
+  "properties": {
+    "kind": {"const": "benchmark-approval-review"},
+    "benchmark_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "series_fingerprint": {"type": "string", "minLength": 16},
+    "frozen_manifest_ref": {"type": "string", "minLength": 1},
+    "reviewed_at": {"type": "string", "format": "date-time"},
+    "reviewer": {"type": "string", "minLength": 1},
+    "methodology_reviewed": {"const": true},
+    "source_snapshot_reviewed": {"const": true},
+    "return_convention_reviewed": {"const": true},
+    "approved_for_model_comparison": {"const": true},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}
