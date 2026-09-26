@@ -22,6 +22,12 @@ If you are reviewing this repository for quantitative-research or model-validati
 
 **What it does not demonstrate yet:** validated EGX alpha, investable historical performance, or a production trading system.
 
+## Legacy scanner archive
+
+The pre-research scanner generations are preserved in [`archive/legacy-scanners/`](archive/legacy-scanners/README.md). V1.1 and V1.2 include recovered, sanitized source and rerun tests; user-specific portfolio/database artifacts are omitted with hashes recorded. V1, V1.2-fixed and V2–V2.4 are history-only where source artifacts could not be recovered. Missing code is not reconstructed.
+
+Every archived generation is **discontinued and not production/deployment eligible**. The archive exists to show the progression of controls, failed validation attempts and research lessons—not to imply historical profitability.
+
 ## Research design
 
 - broader EGX universe, not a hand-picked watchlist,
@@ -75,6 +81,7 @@ flowchart LR
 config/                 immutable research configuration
 data/                   documentation only; raw market files are not committed
 docs/                   protocol, contracts, gates, status and roadmap
+archive/                recovered legacy scanner lineage and history-only records
 schemas/                experiment / model-registry schemas
 src/egx_quant/          reusable research controls
 tests/                  leakage, grain, split, cost and reproducibility tests
