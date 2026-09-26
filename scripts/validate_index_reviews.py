@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import datetime
+from datetime import date
 
 from egx_quant.index_reviews import (
     load_index_review_events,
@@ -31,15 +31,13 @@ def main() -> None:
     args = parser.parse_args()
 
     events = load_index_review_events(args.reviews)
-    decision_time = datetime.fromisoformat(
-        args.decision_time.replace("Z", "+00:00")
-    )
+    decision_date = date.fromisoformat(args.decision_time[:10])
     unresolved = unresolved_identity_count(events)
 
     try:
         deltas = materialize_membership_deltas(
             events,
-            decision_time=decision_time,
+            decision_date=decision_date,
             strict=not args.allow_unresolved,
         )
         blocked = False
@@ -52,7 +50,7 @@ def main() -> None:
         "review_event_count": len(events),
         "unresolved_identity_count": unresolved,
         "materialized_delta_count": len(deltas),
-        "decision_time": decision_time.isoformat(),
+        "decision_date": decision_date.isoformat(),
         "blocked": blocked,
     }
     if blocked:
