@@ -10,17 +10,44 @@
     "eligible_record_count",
     "blocked_record_count",
     "data_evidence_fingerprint",
+    "source_snapshot_fingerprint",
     "modeling_authorized"
   ],
   "properties": {
-    "kind": {"const": "preholdout-data-evidence-manifest"},
-    "decision_time": {"type": "string", "format": "date-time"},
-    "code_ref": {"type": "string", "minLength": 1},
-    "record_count": {"type": "integer", "minimum": 0},
-    "eligible_record_count": {"type": "integer", "minimum": 0},
-    "blocked_record_count": {"type": "integer", "minimum": 0},
-    "data_evidence_fingerprint": {"type": "string", "minLength": 16},
-    "modeling_authorized": {"type": "boolean"}
+    "kind": {
+      "const": "preholdout-data-evidence-manifest"
+    },
+    "decision_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "code_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "record_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "eligible_record_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "blocked_record_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "data_evidence_fingerprint": {
+      "type": "string",
+      "minLength": 16
+    },
+    "modeling_authorized": {
+      "type": "boolean"
+    },
+    "source_snapshot_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    }
   },
   "additionalProperties": false
 }
