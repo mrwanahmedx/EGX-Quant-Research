@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EGX Quarantine Range",
+  "type": "object",
+  "required": [
+    "quarantine_id",
+    "canonical_security_id",
+    "start_date",
+    "end_date",
+    "conflict_class",
+    "disposition",
+    "evidence_ref"
+  ],
+  "properties": {
+    "quarantine_id": {"type": "string", "minLength": 1},
+    "canonical_security_id": {"type": "string", "minLength": 1},
+    "source_symbol": {"type": ["string", "null"]},
+    "start_date": {"type": "string", "format": "date"},
+    "end_date": {"type": "string", "format": "date"},
+    "conflict_class": {
+      "enum": [
+        "corporate_action_or_adjustment_basis",
+        "source_corruption",
+        "non_comparable_ohlc",
+        "identity_conflict",
+        "other"
+      ]
+    },
+    "disposition": {
+      "enum": [
+        "quarantine",
+        "accepted_source_override",
+        "resolved_no_quarantine"
+      ]
+    },
+    "accepted_source": {"type": ["string", "null"]},
+    "source_vintage": {"type": ["string", "null"]},
+    "evidence_ref": {"type": "string", "minLength": 1},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}

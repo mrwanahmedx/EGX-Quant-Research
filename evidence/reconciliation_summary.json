@@ -1,0 +1,49 @@
+{
+  "as_of": "2026-09-26",
+  "status": "audited-conflicts-resolved-but-panel-not-authorized",
+  "material_conflict_tickers_audited": 49,
+  "conflict_classes": {
+    "corporate_action_or_adjustment_basis": 39,
+    "source_corruption_or_non_comparable_ohlc": 10,
+    "unresolved": 0,
+    "confirmed_ticker_alias": 0
+  },
+  "quarantine": {
+    "ticker_date_ranges": 47,
+    "execution_rows_2021_2023": 31860,
+    "overlap_conflict_rows": 25022,
+    "invalid_row_quarantines": 6838,
+    "large_discontinuities_detected": 1403,
+    "large_discontinuities_additionally_quarantined": 897,
+    "large_discontinuities_with_contemporaneous_corporate_action_evidence": 5
+  },
+  "universe": {
+    "latest_liquidity_universe": 116,
+    "unaffected_by_current_quarantines": 96,
+    "model_approved": 0
+  },
+  "source_arbitration": [
+    {
+      "symbol": "EGBE",
+      "decision": "retain_existing_eyad_execution_path",
+      "scope": "pre-2024",
+      "basis": "direct_yahoo_arbitration"
+    },
+    {
+      "symbol": "KZPC",
+      "decision": "retain_existing_eyad_execution_path",
+      "scope": "pre-2024",
+      "basis": "direct_yahoo_arbitration"
+    }
+  ],
+  "source_artifacts_from_reconciliation": [
+    "egx_conflict_reconciliation_report.md",
+    "egx_overlap_conflict_register.csv",
+    "egx_qa_rerun.json",
+    "egx_qa_eligibility_rerun.json",
+    "egx_qa_eligibility_report.md",
+    "egx_impossible_ohlc_profile_by_source"
+  ],
+  "exact_quarantine_register_committed": false,
+  "note": "This file preserves verified aggregate audit state only. Exact ticker/date quarantine rows are not reconstructed from memory and must be imported from the original machine-readable register before Issue #1 can be closed."
+}

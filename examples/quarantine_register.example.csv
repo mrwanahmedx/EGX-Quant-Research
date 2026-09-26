@@ -1,0 +1,2 @@
+quarantine_id,canonical_security_id,source_symbol,start_date,end_date,conflict_class,disposition,accepted_source,source_vintage,evidence_ref
+EXAMPLE_ONLY,EGX:EXAMPLE,EXMP,2025-01-01,2025-01-03,source_corruption,quarantine,,fixture-v1,example-not-real

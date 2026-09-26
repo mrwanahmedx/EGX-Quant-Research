@@ -33,9 +33,9 @@ The latest real-data work has already shown why the gates matter:
 - 140,518 impossible OHLC rows detected,
 - real modeling therefore remains blocked until the canonical data layer passes QA.
 
-Earlier synthetic protocol runs were useful for testing machinery, but they are not evidence of real EGX alpha. The holdout stays unopened until point-in-time universe, corporate-action, price-quality and provenance controls pass.
+Earlier synthetic protocol runs were useful for testing machinery, but they are not evidence of real EGX alpha. The holdout stays unopened until point-in-time universe, corporate-action, price-quality and provenance controls pass. The repository now contains fail-closed evidence, quarantine and security-master machinery so a row cannot enter real model development without those controls.
 
-See [Current Status](docs/CURRENT_STATUS.md), [Scanner Lineage](docs/SCANNER_LINEAGE.md) and the [Foundation-Model Challenger Policy](docs/FOUNDATION_MODEL_POLICY.md).
+See [Current Status](docs/CURRENT_STATUS.md), [Scanner Lineage](docs/SCANNER_LINEAGE.md), the [Foundation-Model Challenger Policy](docs/FOUNDATION_MODEL_POLICY.md), and the [Evidence Layer](evidence/README.md).
 
 ## Architecture
 

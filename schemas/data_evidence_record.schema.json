@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EGX Data Evidence Record",
+  "type": "object",
+  "required": [
+    "canonical_security_id",
+    "session_date",
+    "source_fingerprint",
+    "price_basis",
+    "qa_status",
+    "point_in_time_membership",
+    "corporate_action_status",
+    "benchmark_available",
+    "observed_at"
+  ],
+  "properties": {
+    "canonical_security_id": {"type": "string", "minLength": 1},
+    "session_date": {"type": "string", "format": "date"},
+    "source_fingerprint": {"type": "string", "minLength": 16},
+    "price_basis": {
+      "enum": ["raw", "split_adjusted", "total_return", "other_documented"]
+    },
+    "qa_status": {"enum": ["pass", "quarantine", "rejected"]},
+    "point_in_time_membership": {"type": "boolean"},
+    "corporate_action_status": {"enum": ["not_applicable", "resolved", "unresolved"]},
+    "benchmark_available": {"type": "boolean"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "published_at": {"type": ["string", "null"], "format": "date-time"},
+    "quarantine_id": {"type": ["string", "null"]},
+    "source": {"type": ["string", "null"]},
+    "source_vintage": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}
