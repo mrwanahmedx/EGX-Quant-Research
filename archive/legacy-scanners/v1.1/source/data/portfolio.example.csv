@@ -1,0 +1,3 @@
+ticker,quantity,avg_cost,market_value,bucket
+EXAMPLE_A,100,10.00,1000,CORE
+EXAMPLE_B,50,20.00,1000,ACTIVE
