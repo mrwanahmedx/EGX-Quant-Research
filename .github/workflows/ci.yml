@@ -65,6 +65,19 @@ jobs:
           print("no raw/interim/processed data committed")
           PY
 
+      - name: Assert point-in-time index reconstruction remains blocked
+        shell: bash
+        run: |
+          set +e
+          python scripts/validate_index_reviews.py > /tmp/index-review-status.json
+          code=$?
+          set -e
+          cat /tmp/index-review-status.json
+          if [ "$code" -ne 2 ]; then
+            echo "Expected current dated index reviews to remain blocked until identities are resolved; got exit $code"
+            exit 1
+          fi
+
       - name: Assert current real-research gate fails closed
         shell: bash
         run: |
