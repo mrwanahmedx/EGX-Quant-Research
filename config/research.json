@@ -1,0 +1,21 @@
+{
+  "project": "EGX Quant Research",
+  "timezone": "Africa/Cairo",
+  "development_end": "2026-01-31",
+  "holdout_start": "2026-02-01",
+  "holdout_end": "2026-06-30",
+  "shadow_start": "2026-09-01",
+  "target_horizons_trading_days": [20, 63],
+  "target_type": "cross-sectional residual return",
+  "feature_family": "Qlib/Alpha158-inspired plus EGX-relative features",
+  "baseline_models": ["linear", "lasso"],
+  "challenger_models": ["lightgbm", "xgboost_ranker", "catboost"],
+  "portfolio_research": {
+    "construction": ["top_k", "dropout"],
+    "neutralisation": ["sector", "beta"],
+    "execution": "next_session",
+    "transaction_costs_required": true
+  },
+  "benchmarks_when_evidenced": ["EGX30 total return", "EGX70 EWI", "EGX100 EWI", "CONIA", "Egyptian T-bill"],
+  "holdout_policy": "Do not evaluate until every mandatory data-evidence gate passes."
+}
