@@ -55,8 +55,27 @@ class PortfolioModelingTests(unittest.TestCase):
             "blocked_record_count": 4,
             "data_evidence_fingerprint": "a" * 64,
         }
+        blocked_panel = {
+            "kind": "frozen-development-panel-manifest",
+            "created_at": "2026-09-26T00:00:00Z",
+            "code_ref": "panel123",
+            "row_count": 100,
+            "security_count": 10,
+            "first_session": "2025-01-02",
+            "last_session": "2026-01-30",
+            "panel_fingerprint": "p" * 64,
+            "evidence_fingerprint": "a" * 64,
+            "evidence_manifest_code_ref": "abc123",
+            "development_cutoff": "2026-01-31",
+            "authorized_for_model_development": True,
+        }
         with self.assertRaises(RuntimeError):
-            authorize_real_training(spec, aggregate_pass, blocked_manifest)
+            authorize_real_training(
+                spec,
+                aggregate_pass,
+                blocked_manifest,
+                blocked_panel,
+            )
 
         allowed_manifest = {
             "kind": "preholdout-data-evidence-manifest",
@@ -68,7 +87,22 @@ class PortfolioModelingTests(unittest.TestCase):
             "blocked_record_count": 0,
             "data_evidence_fingerprint": "a" * 64,
         }
-        authorize_real_training(spec, aggregate_pass, allowed_manifest)
+        authorize_real_training(
+            spec,
+            aggregate_pass,
+            allowed_manifest,
+            blocked_panel,
+        )
+
+        mismatched_panel = dict(blocked_panel)
+        mismatched_panel["evidence_fingerprint"] = "x" * 64
+        with self.assertRaises(RuntimeError):
+            authorize_real_training(
+                spec,
+                aggregate_pass,
+                allowed_manifest,
+                mismatched_panel,
+            )
 
 
 if __name__ == "__main__":

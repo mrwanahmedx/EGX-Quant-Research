@@ -5,6 +5,7 @@ from typing import Mapping, Any
 
 from .evidence_manifest import require_frozen_manifest_authorized
 from .gates import DataEvidence, require_modeling_allowed
+from .panel_manifest import require_panel_matches_evidence
 
 
 SUPPORTED_FAMILIES = {
@@ -43,8 +44,10 @@ def authorize_real_training(
     spec: ModelSpec,
     evidence: DataEvidence,
     frozen_manifest: Mapping[str, Any],
+    frozen_panel_manifest: Mapping[str, Any],
 ) -> None:
-    """Fail closed unless aggregate gates and row-level frozen evidence both pass."""
+    """Authorize real training only for a panel linked to authorized evidence."""
     validate_model_spec(spec)
     require_modeling_allowed(evidence)
     require_frozen_manifest_authorized(frozen_manifest)
+    require_panel_matches_evidence(frozen_panel_manifest, frozen_manifest)

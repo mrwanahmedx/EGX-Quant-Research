@@ -9,6 +9,10 @@ from .acceptance import load_acceptance_thresholds
 from .benchmarks import approved_benchmarks, load_benchmark_catalog
 from .io import load_quarantine_csv, load_security_master_json
 from .manifest_validation import validate_frozen_evidence_manifest
+from .panel_manifest import (
+    require_panel_matches_evidence,
+    validate_frozen_development_panel_manifest,
+)
 
 
 @dataclass(frozen=True)
@@ -124,7 +128,28 @@ def build_repository_readiness_report(
     )
 
     panel_path = Path(frozen_development_panel_manifest_path)
-    panel_manifest_present = panel_path.exists() and panel_path.stat().st_size > 0
+    panel_manifest_valid = False
+    panel_manifest_detail = "development panel is not frozen"
+    if panel_path.exists():
+        try:
+            panel_manifest = _load_json(panel_path)
+            validate_frozen_development_panel_manifest(panel_manifest)
+            if manifest_valid:
+                evidence_manifest = _load_json(frozen_evidence_manifest_path)
+                require_panel_matches_evidence(panel_manifest, evidence_manifest)
+                panel_manifest_valid = True
+                panel_manifest_detail = (
+                    "development panel is frozen and linked to the authorized "
+                    f"evidence generation: {panel_manifest['row_count']} rows"
+                )
+            else:
+                panel_manifest_detail = (
+                    "development panel manifest exists but evidence manifest "
+                    "is not authorized"
+                )
+        except Exception as exc:
+            panel_manifest_detail = f"development panel manifest is invalid: {exc}"
+
     benchmark_ready = bool(approved_benchmarks(benchmarks))
 
     checks = (
@@ -163,12 +188,8 @@ def build_repository_readiness_report(
         ),
         ReadinessCheck(
             "frozen_development_panel",
-            panel_manifest_present,
-            (
-                "development panel manifest is present"
-                if panel_manifest_present
-                else "development panel is not frozen"
-            ),
+            panel_manifest_valid,
+            panel_manifest_detail,
         ),
     )
 

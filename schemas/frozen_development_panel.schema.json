@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen EGX Development Panel Manifest",
+  "type": "object",
+  "required": [
+    "kind","created_at","code_ref","row_count","security_count",
+    "first_session","last_session","panel_fingerprint","evidence_fingerprint",
+    "evidence_manifest_code_ref","development_cutoff","authorized_for_model_development"
+  ],
+  "properties": {
+    "kind": {"const": "frozen-development-panel-manifest"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "code_ref": {"type": "string", "minLength": 1},
+    "row_count": {"type": "integer", "minimum": 1},
+    "security_count": {"type": "integer", "minimum": 1},
+    "first_session": {"type": "string", "format": "date"},
+    "last_session": {"type": "string", "format": "date"},
+    "panel_fingerprint": {"type": "string", "minLength": 16},
+    "evidence_fingerprint": {"type": "string", "minLength": 16},
+    "evidence_manifest_code_ref": {"type": "string", "minLength": 1},
+    "development_cutoff": {"const": "2026-01-31"},
+    "authorized_for_model_development": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}
