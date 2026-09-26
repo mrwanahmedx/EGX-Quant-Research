@@ -16,6 +16,7 @@ class FrozenManifestValidationTests(unittest.TestCase):
             "eligible_record_count": 1,
             "blocked_record_count": 1,
             "data_evidence_fingerprint": "a" * 64,
+            "source_snapshot_fingerprint": "s" * 64,
             "modeling_authorized": False,
         }
         value.update(overrides)
