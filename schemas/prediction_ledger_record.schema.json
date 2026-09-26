@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EGX Shadow Prediction Ledger Record",
+  "type": "object",
+  "required": [
+    "prediction_id",
+    "model_id",
+    "canonical_security_id",
+    "decision_time",
+    "target_horizon",
+    "score",
+    "rank",
+    "source_vintage",
+    "data_fingerprint",
+    "execution_convention"
+  ],
+  "properties": {
+    "prediction_id": {"type": "string", "minLength": 1},
+    "model_id": {"type": "string", "minLength": 1},
+    "canonical_security_id": {"type": "string", "minLength": 1},
+    "decision_time": {"type": "string", "format": "date-time"},
+    "target_horizon": {"enum": [20, 63]},
+    "score": {"type": "number"},
+    "rank": {"type": "integer", "minimum": 1},
+    "source_vintage": {"type": "string", "minLength": 1},
+    "data_fingerprint": {"type": "string", "minLength": 16},
+    "execution_convention": {"type": "string", "minLength": 1},
+    "hypothetical_entry_time": {"type": ["string", "null"], "format": "date-time"},
+    "hypothetical_entry_price": {"type": ["number", "null"], "exclusiveMinimum": 0},
+    "realized_target": {"type": ["number", "null"]},
+    "outcome_observed_at": {"type": ["string", "null"], "format": "date-time"},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}
