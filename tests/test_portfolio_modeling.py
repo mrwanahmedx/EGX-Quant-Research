@@ -54,6 +54,7 @@ class PortfolioModelingTests(unittest.TestCase):
             "eligible_record_count": 96,
             "blocked_record_count": 4,
             "data_evidence_fingerprint": "a" * 64,
+            "source_snapshot_fingerprint": "s" * 64,
         }
         blocked_panel = {
             "kind": "frozen-development-panel-manifest",
@@ -86,6 +87,7 @@ class PortfolioModelingTests(unittest.TestCase):
             "eligible_record_count": 100,
             "blocked_record_count": 0,
             "data_evidence_fingerprint": "a" * 64,
+            "source_snapshot_fingerprint": "s" * 64,
         }
         authorize_real_training(
             spec,
