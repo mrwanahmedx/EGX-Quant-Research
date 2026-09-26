@@ -8,6 +8,21 @@ This repository is intentionally built like a **model-research and validation pr
 
 > **Current status:** data QA is blocking real-model validation. The project does **not** claim historical validation, live alpha, or production readiness.
 
+## Reviewer path
+
+If you are reviewing this repository for quantitative-research or model-validation work, the fastest path is:
+
+1. read [Current Status](docs/CURRENT_STATUS.md) for the present evidence gate,
+2. inspect the architecture and validation philosophy below,
+3. review [Scanner Lineage](docs/SCANNER_LINEAGE.md) for failed / superseded approaches,
+4. review the tests for leakage, split, grain, cost, and reproducibility controls,
+5. treat every blocked gate as an explicit research result — not as missing polish.
+
+**What this repository demonstrates:** research design, evidence gating, validation discipline, reproducibility controls, and willingness to stop when data quality invalidates modeling.
+
+**What it does not demonstrate yet:** validated EGX alpha, investable historical performance, or a production trading system.
+
+
 ## Research design
 
 - broader EGX universe, not a hand-picked watchlist,
