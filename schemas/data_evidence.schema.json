@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EGX Research Data Evidence Record",
+  "type": "object",
+  "required": [
+    "canonical_security_id",
+    "session_date",
+    "price_source",
+    "source_vintage",
+    "price_basis",
+    "ohlc_qa_status",
+    "quarantine_status",
+    "point_in_time_membership_status",
+    "corporate_action_status",
+    "benchmark_status",
+    "observed_at",
+    "evidence_complete"
+  ],
+  "properties": {
+    "canonical_security_id": {"type": "string", "minLength": 1},
+    "session_date": {"type": "string", "format": "date"},
+    "price_source": {"type": "string", "minLength": 1},
+    "source_vintage": {"type": "string", "minLength": 1},
+    "source_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "price_basis": {
+      "enum": [
+        "raw",
+        "split_adjusted",
+        "total_return",
+        "unknown"
+      ]
+    },
+    "ohlc_qa_status": {
+      "enum": ["passed", "quarantined", "rejected", "unknown"]
+    },
+    "quarantine_status": {
+      "enum": ["clear", "quarantined", "unknown"]
+    },
+    "quarantine_reason": {"type": ["string", "null"]},
+    "point_in_time_membership_status": {
+      "enum": ["passed", "failed", "unknown"]
+    },
+    "corporate_action_status": {
+      "enum": ["passed", "failed", "unknown", "not_applicable"]
+    },
+    "benchmark_status": {
+      "enum": ["passed", "failed", "unknown", "not_applicable"]
+    },
+    "observed_at": {"type": "string", "format": "date-time"},
+    "publication_cutoff_ok": {"type": "boolean"},
+    "evidence_complete": {"type": "boolean"},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": true
+}
