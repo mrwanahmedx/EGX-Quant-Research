@@ -4,7 +4,7 @@ This repository is a personal research project, but changes still follow a stric
 
 ## Before adding model logic
 
-Confirm that the required data passes the relevant gates in `docs/VALIDATION_GATES.md`.
+Confirm that the required data passes the relevant gates in `docs/VALIDATION_GATES.md` and that every file complies with `docs/PUBLIC_DATA_POLICY.md`.
 
 ## Pull-request expectations
 
@@ -24,6 +24,8 @@ Do not:
 - use post-date fundamentals in earlier features,
 - tune on the frozen holdout,
 - publish synthetic or toy results as real EGX performance,
-- commit private or employer data.
+- commit private or employer data,
+- commit raw market datasets, restricted spreadsheets, databases, archives or credentials,
+- move sensitive local artifacts into a different repository path to bypass the public-data guard.
 
 A blocked experiment is preferable to a misleading result.
