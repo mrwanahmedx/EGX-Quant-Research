@@ -1,0 +1,50 @@
+name: Research experiment
+description: Propose a leakage-safe development experiment.
+title: "[EXP] "
+body:
+  - type: input
+    id: hypothesis
+    attributes:
+      label: Hypothesis
+      placeholder: What incremental signal is being tested?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target
+    attributes:
+      label: Target
+      options:
+        - 20d residual return
+        - 63d residual return
+        - Infrastructure / no model target
+    validations:
+      required: true
+
+  - type: textarea
+    id: features
+    attributes:
+      label: Feature set / data requirements
+      description: State publication timing and point-in-time requirements.
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: Folds, purge, costs, benchmarks and predeclared acceptance conditions.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: safeguards
+    attributes:
+      label: Safeguards
+      options:
+        - label: Does not inspect the February-June 2026 holdout during tuning
+          required: true
+        - label: Uses a frozen data fingerprint and experiment manifest
+          required: true
+        - label: Includes transaction costs for portfolio claims
+          required: true

@@ -1,0 +1,44 @@
+name: Data quality blocker
+description: Record a source, mapping, price or point-in-time evidence problem.
+title: "[DATA] "
+body:
+  - type: dropdown
+    id: gate
+    attributes:
+      label: Validation gate
+      options:
+        - Security identity
+        - Price integrity
+        - Corporate actions
+        - Point-in-time universe
+        - Publication timing
+        - Benchmark provenance
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source / dataset
+      placeholder: e.g. Kaggle dataset, Yahoo, issuer disclosure
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the exact evidence conflict or QA failure.
+    validations:
+      required: true
+
+  - type: textarea
+    id: affected
+    attributes:
+      label: Affected securities / dates
+      description: Include canonical IDs, tickers and date ranges where known.
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and proposed resolution
+      description: Do not guess. Link or describe the independent evidence needed.
