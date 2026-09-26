@@ -19,6 +19,7 @@ class PanelManifestTests(unittest.TestCase):
             "eligible_record_count": 2,
             "blocked_record_count": 0,
             "data_evidence_fingerprint": "e" * 64,
+            "source_snapshot_fingerprint": "s" * 64,
             "modeling_authorized": True,
         }
         value.update(overrides)

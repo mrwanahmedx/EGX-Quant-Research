@@ -16,6 +16,7 @@ class FrozenManifestValidationTests(unittest.TestCase):
             "eligible_record_count": 1,
             "blocked_record_count": 1,
             "data_evidence_fingerprint": "a" * 64,
+            "source_snapshot_fingerprint": "s" * 64,
             "modeling_authorized": False,
         }
         value.update(overrides)
@@ -34,6 +35,12 @@ class FrozenManifestValidationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_frozen_evidence_manifest(
                 self.manifest(record_count=3)
+            )
+
+    def test_invalid_source_snapshot_fingerprint_fails(self):
+        with self.assertRaises(ValueError):
+            validate_frozen_evidence_manifest(
+                self.manifest(source_snapshot_fingerprint="not-a-sha")
             )
 
     def test_code_ref_must_match_requested_generation(self):

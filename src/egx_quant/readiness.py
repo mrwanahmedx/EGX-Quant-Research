@@ -74,7 +74,11 @@ def _validated_security_master(path: Path) -> tuple[bool, str]:
     return True, f"security master contains {verified} verified mapping records"
 
 
-def _validated_frozen_manifest(path: Path) -> tuple[bool, str]:
+def _validated_frozen_manifest(
+    path: Path,
+    *,
+    source_snapshot_fingerprint: str | None,
+) -> tuple[bool, str]:
     if not path.exists():
         return False, "pre-holdout row-level evidence manifest is not frozen"
     try:
@@ -82,6 +86,14 @@ def _validated_frozen_manifest(path: Path) -> tuple[bool, str]:
         validate_frozen_evidence_manifest(manifest)
     except Exception as exc:
         return False, f"frozen evidence manifest is invalid: {exc}"
+    if (
+        source_snapshot_fingerprint is None
+        or manifest["source_snapshot_fingerprint"] != source_snapshot_fingerprint
+    ):
+        return False, (
+            "frozen evidence manifest is not linked to the current "
+            "pre-holdout source snapshot generation"
+        )
     if not manifest["modeling_authorized"]:
         return False, (
             "frozen evidence manifest exists but does not authorize modeling: "
@@ -134,6 +146,7 @@ def build_repository_readiness_report(
 
     source_snapshot_path = Path(source_snapshot_manifest_path)
     source_snapshot_valid = False
+    source_snapshot_fingerprint = None
     source_snapshot_detail = "pre-holdout source snapshot manifest is not frozen"
     if source_snapshot_path.exists():
         try:
@@ -143,6 +156,9 @@ def build_repository_readiness_report(
                 source_catalog=source_catalog,
             )
             source_snapshot_valid = True
+            source_snapshot_fingerprint = source_snapshot_manifest[
+                "composite_fingerprint"
+            ]
             source_snapshot_detail = (
                 "pre-holdout source snapshots are frozen: "
                 f"{len(source_snapshot_manifest['sources'])} sources"
@@ -170,7 +186,8 @@ def build_repository_readiness_report(
         Path(security_master_path)
     )
     manifest_valid, manifest_detail = _validated_frozen_manifest(
-        Path(frozen_evidence_manifest_path)
+        Path(frozen_evidence_manifest_path),
+        source_snapshot_fingerprint=source_snapshot_fingerprint,
     )
 
     panel_path = Path(frozen_development_panel_manifest_path)

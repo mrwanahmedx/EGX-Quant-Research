@@ -83,6 +83,7 @@ class EvidenceTests(unittest.TestCase):
             [record],
             decision_time=datetime(2026, 1, 6, tzinfo=UTC),
             code_ref="abc123",
+            source_snapshot_fingerprint="s" * 64,
         )
         self.assertTrue(manifest["modeling_authorized"])
         require_frozen_manifest_authorized(manifest)
@@ -91,6 +92,7 @@ class EvidenceTests(unittest.TestCase):
             [self.record(benchmark_available=False)],
             decision_time=datetime(2026, 1, 6, tzinfo=UTC),
             code_ref="abc123",
+            source_snapshot_fingerprint="s" * 64,
         )
         self.assertFalse(blocked["modeling_authorized"])
         with self.assertRaises(RuntimeError):
