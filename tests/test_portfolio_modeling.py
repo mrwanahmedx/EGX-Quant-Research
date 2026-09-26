@@ -46,19 +46,27 @@ class PortfolioModelingTests(unittest.TestCase):
         )
         aggregate_pass = DataEvidence(True, True, True, True, True, True)
         blocked_manifest = {
+            "kind": "preholdout-data-evidence-manifest",
+            "decision_time": "2026-01-31T23:59:59+02:00",
+            "code_ref": "abc123",
             "modeling_authorized": False,
             "record_count": 100,
             "eligible_record_count": 96,
             "blocked_record_count": 4,
+            "data_evidence_fingerprint": "a" * 64,
         }
         with self.assertRaises(RuntimeError):
             authorize_real_training(spec, aggregate_pass, blocked_manifest)
 
         allowed_manifest = {
+            "kind": "preholdout-data-evidence-manifest",
+            "decision_time": "2026-01-31T23:59:59+02:00",
+            "code_ref": "abc123",
             "modeling_authorized": True,
             "record_count": 100,
             "eligible_record_count": 100,
             "blocked_record_count": 0,
+            "data_evidence_fingerprint": "a" * 64,
         }
         authorize_real_training(spec, aggregate_pass, allowed_manifest)
 

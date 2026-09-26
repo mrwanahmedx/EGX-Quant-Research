@@ -10,6 +10,7 @@ from .evidence import (
     evidence_fingerprint,
     evidence_is_model_eligible,
 )
+from .manifest_validation import validate_frozen_evidence_manifest
 
 
 def freeze_preholdout_evidence_manifest(
@@ -34,7 +35,7 @@ def freeze_preholdout_evidence_manifest(
     ]
     blocked = len(records) - len(eligible)
 
-    return {
+    manifest = {
         "kind": "preholdout-data-evidence-manifest",
         "decision_time": decision_time.isoformat(),
         "code_ref": code_ref,
@@ -44,9 +45,17 @@ def freeze_preholdout_evidence_manifest(
         "data_evidence_fingerprint": evidence_fingerprint(records),
         "modeling_authorized": bool(records) and blocked == 0,
     }
+    validate_frozen_evidence_manifest(manifest)
+    return manifest
 
 
 def require_frozen_manifest_authorized(manifest: Mapping[str, Any]) -> None:
+    try:
+        validate_frozen_evidence_manifest(manifest)
+    except (TypeError, ValueError, KeyError) as exc:
+        raise RuntimeError(
+            "frozen data-evidence manifest is invalid and cannot authorize modeling"
+        ) from exc
     if not manifest.get("modeling_authorized", False):
         raise RuntimeError(
             "real modeling is not authorized by the frozen data-evidence manifest"
