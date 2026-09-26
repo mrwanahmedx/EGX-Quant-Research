@@ -40,3 +40,16 @@ A dataset is not promoted from `raw` to `processed` until:
 ```
 
 Do not commit proprietary data, private brokerage exports or employer information.
+
+
+## Pre-holdout source snapshot freeze
+
+Before real model development, create deterministic local extracts that end no later than 2026-01-31, compute SHA-256 fingerprints, and freeze only the metadata with:
+
+```bash
+python scripts/freeze_source_snapshot.py \
+  --candidate /path/to/source_snapshots.json \
+  --output evidence/source_snapshot_manifest.json
+```
+
+The raw provider files remain local. The committed manifest proves exactly which pre-holdout source generation was used without redistributing the datasets.
