@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Frozen Benchmark Series Manifest",
+  "type": "object",
+  "required": [
+    "kind",
+    "benchmark_id",
+    "source_id",
+    "source_snapshot_ref",
+    "return_convention",
+    "methodology_ref",
+    "observation_count",
+    "first_date",
+    "last_date",
+    "series_fingerprint",
+    "code_ref",
+    "development_cutoff",
+    "approved_for_model_comparison"
+  ],
+  "properties": {
+    "kind": {"const": "frozen-benchmark-series-manifest"},
+    "benchmark_id": {"type": "string", "minLength": 1},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_snapshot_ref": {"type": "string", "minLength": 1},
+    "return_convention": {"type": "string", "minLength": 1},
+    "methodology_ref": {"type": "string", "minLength": 1},
+    "observation_count": {"type": "integer", "minimum": 1},
+    "first_date": {"type": "string", "format": "date"},
+    "last_date": {"type": "string", "format": "date"},
+    "series_fingerprint": {"type": "string", "minLength": 16},
+    "code_ref": {"type": "string", "minLength": 1},
+    "development_cutoff": {"const": "2026-01-31"},
+    "approved_for_model_comparison": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}
