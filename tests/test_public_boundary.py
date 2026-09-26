@@ -24,7 +24,7 @@ class PublicBoundaryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             (root / "note.txt").write_text(
-                "-----BEGIN PRIVATE KEY-----\nredacted\n",
+                "-----BEGIN " + "PRIVATE KEY-----\nredacted\n",
                 encoding="utf-8",
             )
             violations = check_repository(root)
