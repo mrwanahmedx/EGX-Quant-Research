@@ -1,0 +1,13 @@
+{
+  "status": "template_not_frozen",
+  "thresholds": {
+    "min_mean_rank_ic": null,
+    "min_positive_ic_fraction": null,
+    "max_one_way_turnover": null,
+    "min_net_return": null,
+    "max_drawdown_abs": null
+  },
+  "multiple_testing_method": null,
+  "trial_registry_required": true,
+  "note": "Thresholds must be chosen and committed from development reasoning before the holdout is opened. Null values intentionally prevent acceptance."
+}
