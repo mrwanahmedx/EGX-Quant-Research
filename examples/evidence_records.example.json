@@ -1,0 +1,17 @@
+[
+  {
+    "canonical_security_id": "EGX:EXAMPLE",
+    "session_date": "2025-01-02",
+    "source_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "price_basis": "raw",
+    "qa_status": "pass",
+    "point_in_time_membership": true,
+    "corporate_action_status": "not_applicable",
+    "benchmark_available": true,
+    "observed_at": "2025-01-02T15:00:00+02:00",
+    "published_at": "2025-01-02T15:00:00+02:00",
+    "quarantine_id": null,
+    "source": "example-only",
+    "source_vintage": "fixture-v1"
+  }
+]
