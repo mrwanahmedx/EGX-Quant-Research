@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EGX Corporate Action Evidence",
+  "type": "object",
+  "required": [
+    "action_id",
+    "canonical_security_id",
+    "action_type",
+    "effective_date",
+    "published_at",
+    "source_url",
+    "status"
+  ],
+  "properties": {
+    "action_id": {"type": "string", "minLength": 1},
+    "canonical_security_id": {"type": "string", "minLength": 1},
+    "action_type": {
+      "enum": [
+        "cash_dividend",
+        "stock_dividend",
+        "split",
+        "reverse_split",
+        "rights_issue",
+        "ticker_change",
+        "merger",
+        "demerger",
+        "other"
+      ]
+    },
+    "effective_date": {"type": "string", "format": "date"},
+    "published_at": {"type": "string", "format": "date-time"},
+    "source_url": {"type": "string", "format": "uri"},
+    "status": {"enum": ["resolved", "unresolved"]},
+    "adjustment_basis": {
+      "type": ["string", "null"],
+      "enum": [null, "raw", "split_adjusted", "total_return", "other_documented"]
+    },
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": false
+}
