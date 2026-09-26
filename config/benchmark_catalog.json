@@ -1,0 +1,57 @@
+[
+  {
+    "benchmark_id": "egx30_total_return",
+    "name": "EGX30 Total Return",
+    "kind": "equity_total_return",
+    "source_id": "egx_official_indices",
+    "methodology_evidenced": true,
+    "historical_series_frozen": false,
+    "series_fingerprint": null,
+    "approved_for_model_comparison": false,
+    "notes": "Preferred broad large-cap equity benchmark once a dated, reproducible total-return series is frozen."
+  },
+  {
+    "benchmark_id": "egx70_ewi",
+    "name": "EGX70 EWI",
+    "kind": "equity_price_index",
+    "source_id": "egx_official_indices",
+    "methodology_evidenced": true,
+    "historical_series_frozen": false,
+    "series_fingerprint": null,
+    "approved_for_model_comparison": false,
+    "notes": "Useful for broader liquid EGX comparison after a reproducible historical series is frozen."
+  },
+  {
+    "benchmark_id": "egx100_ewi",
+    "name": "EGX100 EWI",
+    "kind": "equity_price_index",
+    "source_id": "egx_official_indices",
+    "methodology_evidenced": true,
+    "historical_series_frozen": false,
+    "series_fingerprint": null,
+    "approved_for_model_comparison": false,
+    "notes": "Broader equity benchmark candidate."
+  },
+  {
+    "benchmark_id": "conia",
+    "name": "CONIA",
+    "kind": "overnight_cash_rate",
+    "source_id": "official_rate_source_required",
+    "methodology_evidenced": false,
+    "historical_series_frozen": false,
+    "series_fingerprint": null,
+    "approved_for_model_comparison": false,
+    "notes": "Cash-rate comparator remains blocked until official historical observations and conventions are frozen."
+  },
+  {
+    "benchmark_id": "egypt_tbill",
+    "name": "Egyptian Treasury Bill",
+    "kind": "fixed_income",
+    "source_id": "official_fixed_income_source_required",
+    "methodology_evidenced": false,
+    "historical_series_frozen": false,
+    "series_fingerprint": null,
+    "approved_for_model_comparison": false,
+    "notes": "Matched-horizon fixed-income hurdle requires dated auction/yield data and an explicit return convention."
+  }
+]
