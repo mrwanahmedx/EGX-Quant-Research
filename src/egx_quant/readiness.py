@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from .acceptance import load_acceptance_thresholds
+from .acceptance_freeze import validate_frozen_acceptance_payload
 from .benchmarks import approved_benchmarks, load_benchmark_catalog
 from .io import load_quarantine_csv, load_security_master_json
 from .manifest_validation import validate_frozen_evidence_manifest
@@ -93,7 +94,7 @@ def _validated_frozen_manifest(path: Path) -> tuple[bool, str]:
 def build_repository_readiness_report(
     *,
     reconciliation_summary_path: str | Path = "evidence/reconciliation_summary.json",
-    acceptance_path: str | Path = "config/acceptance.template.json",
+    acceptance_path: str | Path | None = None,
     benchmark_catalog_path: str | Path = "config/benchmark_catalog.json",
     exact_quarantine_register_path: str | Path = "evidence/quarantine_register.csv",
     frozen_evidence_manifest_path: str | Path = "evidence/frozen_preholdout_manifest.json",
@@ -101,7 +102,30 @@ def build_repository_readiness_report(
     security_master_path: str | Path = "evidence/security_master.json",
 ) -> ReadinessReport:
     summary = _load_json(reconciliation_summary_path)
+
+    if acceptance_path is None:
+        frozen_path = Path("config/acceptance.frozen.json")
+        acceptance_path = (
+            frozen_path
+            if frozen_path.exists()
+            else Path("config/acceptance.template.json")
+        )
+
     thresholds = load_acceptance_thresholds(acceptance_path)
+    acceptance_valid = thresholds.frozen
+    acceptance_detail = "acceptance thresholds remain intentionally unfrozen"
+    if acceptance_valid:
+        try:
+            raw_acceptance = _load_json(acceptance_path)
+            validate_frozen_acceptance_payload(raw_acceptance)
+            acceptance_detail = (
+                "development acceptance thresholds are frozen with "
+                "pre-holdout metadata"
+            )
+        except Exception as exc:
+            acceptance_valid = False
+            acceptance_detail = f"frozen acceptance thresholds are invalid: {exc}"
+
     benchmarks = load_benchmark_catalog(benchmark_catalog_path)
 
     expected_quarantine_count = (
@@ -174,12 +198,8 @@ def build_repository_readiness_report(
         ),
         ReadinessCheck(
             "acceptance_thresholds",
-            thresholds.frozen,
-            (
-                "development acceptance thresholds are frozen"
-                if thresholds.frozen
-                else "acceptance thresholds remain intentionally unfrozen"
-            ),
+            acceptance_valid,
+            acceptance_detail,
         ),
         ReadinessCheck(
             "frozen_evidence_manifest",
