@@ -14,6 +14,8 @@ from .panel_manifest import (
     require_panel_matches_evidence,
     validate_frozen_development_panel_manifest,
 )
+from .source_snapshot import validate_frozen_source_snapshot_manifest
+from .sources import load_source_catalog
 
 
 @dataclass(frozen=True)
@@ -94,6 +96,7 @@ def _validated_frozen_manifest(path: Path) -> tuple[bool, str]:
 def build_repository_readiness_report(
     *,
     reconciliation_summary_path: str | Path = "evidence/reconciliation_summary.json",
+    source_snapshot_manifest_path: str | Path = "evidence/source_snapshot_manifest.json",
     acceptance_path: str | Path | None = None,
     benchmark_catalog_path: str | Path = "config/benchmark_catalog.json",
     exact_quarantine_register_path: str | Path = "evidence/quarantine_register.csv",
@@ -127,6 +130,25 @@ def build_repository_readiness_report(
             acceptance_detail = f"frozen acceptance thresholds are invalid: {exc}"
 
     benchmarks = load_benchmark_catalog(benchmark_catalog_path)
+    source_catalog = load_source_catalog("config/source_catalog.json")
+
+    source_snapshot_path = Path(source_snapshot_manifest_path)
+    source_snapshot_valid = False
+    source_snapshot_detail = "pre-holdout source snapshot manifest is not frozen"
+    if source_snapshot_path.exists():
+        try:
+            source_snapshot_manifest = _load_json(source_snapshot_path)
+            validate_frozen_source_snapshot_manifest(
+                source_snapshot_manifest,
+                source_catalog=source_catalog,
+            )
+            source_snapshot_valid = True
+            source_snapshot_detail = (
+                "pre-holdout source snapshots are frozen: "
+                f"{len(source_snapshot_manifest['sources'])} sources"
+            )
+        except Exception as exc:
+            source_snapshot_detail = f"source snapshot manifest is invalid: {exc}"
 
     expected_quarantine_count = (
         summary.get("quarantine", {}).get("ticker_date_ranges")
@@ -177,6 +199,11 @@ def build_repository_readiness_report(
     benchmark_ready = bool(approved_benchmarks(benchmarks))
 
     checks = (
+        ReadinessCheck(
+            "source_snapshot",
+            source_snapshot_valid,
+            source_snapshot_detail,
+        ),
         ReadinessCheck(
             "exact_quarantine_register",
             exact_register_committed,

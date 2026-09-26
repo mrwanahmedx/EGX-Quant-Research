@@ -26,6 +26,7 @@ class ReadinessBenchmarkShadowTests(unittest.TestCase):
         report = build_repository_readiness_report()
         self.assertFalse(report.modeling_authorized)
         blocker_ids = {item.check_id for item in report.blockers}
+        self.assertIn("source_snapshot", blocker_ids)
         self.assertIn("exact_quarantine_register", blocker_ids)
         self.assertIn("security_master", blocker_ids)
         self.assertIn("benchmark_series", blocker_ids)
