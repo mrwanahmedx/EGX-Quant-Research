@@ -37,6 +37,12 @@ class FrozenManifestValidationTests(unittest.TestCase):
                 self.manifest(record_count=3)
             )
 
+    def test_invalid_source_snapshot_fingerprint_fails(self):
+        with self.assertRaises(ValueError):
+            validate_frozen_evidence_manifest(
+                self.manifest(source_snapshot_fingerprint="not-a-sha")
+            )
+
     def test_code_ref_must_match_requested_generation(self):
         with self.assertRaises(RuntimeError):
             assert_manifest_code_ref(self.manifest(), "different")
