@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EGX Quant Model Registry Entry",
+  "type": "object",
+  "required": [
+    "model_id",
+    "experiment_id",
+    "family",
+    "target_horizon",
+    "development_status",
+    "data_evidence_status"
+  ],
+  "properties": {
+    "model_id": {"type": "string"},
+    "experiment_id": {"type": "string"},
+    "family": {"type": "string"},
+    "target_horizon": {"enum": [20, 63]},
+    "development_status": {
+      "enum": ["candidate", "rejected", "accepted-development", "holdout-evaluated", "shadow"]
+    },
+    "data_evidence_status": {
+      "enum": ["blocked", "partial", "passed"]
+    },
+    "metrics": {"type": "object"},
+    "blockers": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

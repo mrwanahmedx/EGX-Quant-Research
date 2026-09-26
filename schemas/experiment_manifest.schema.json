@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EGX Quant Experiment Manifest",
+  "type": "object",
+  "required": [
+    "experiment_id",
+    "created_at",
+    "code_ref",
+    "data_fingerprint",
+    "feature_set",
+    "target",
+    "split",
+    "model",
+    "seed",
+    "cost_model"
+  ],
+  "properties": {
+    "experiment_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "code_ref": {"type": "string", "minLength": 1},
+    "data_fingerprint": {"type": "string", "minLength": 16},
+    "feature_set": {"type": "string", "minLength": 1},
+    "target": {"type": "string", "minLength": 1},
+    "split": {"type": "string", "minLength": 1},
+    "model": {"type": "string", "minLength": 1},
+    "params": {"type": "object"},
+    "seed": {"type": "integer"},
+    "cost_model": {"type": "object"},
+    "notes": {"type": "string"}
+  },
+  "additionalProperties": true
+}
